@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "237263946757",
+    "project_id": "moviereview-project",
+    "storage_bucket": "moviereview-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237263946757:android:a7c7fe89c4ba97c674886c",
+        "android_client_info": {
+          "package_name": "com.example.movie_world"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237263946757-bh9m0i5m6c6l47ajpb921038i4jidilc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movie_world",
+            "certificate_hash": "c4168492126024c9b5c6dec0ee36ba4975079549"
+          }
+        },
+        {
+          "client_id": "237263946757-afla0useo4i6h7lokbke0smfardrkr69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkvqoH121tdDdCcY8AzhEQjNd8DRT1tr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237263946757-afla0useo4i6h7lokbke0smfardrkr69.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
