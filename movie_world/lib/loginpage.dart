@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use
 
 import 'package:flutter/material.dart';
 
@@ -11,129 +11,147 @@ class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
 
   @override
-  void initState() {
+  void initState() { // 빌드될때 한버만 실행된다. 
     super.initState();  
+  }
+  PageController _controller = PageController(initialPage: 1, viewportFraction: 1.0);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).size.height,
+        child: PageView(
+          controller: _controller,
+          physics: AlwaysScrollableScrollPhysics(),
+          children: <Widget>[LoginPage(), HomePage(), SignupPage()],
+          scrollDirection: Axis.horizontal,
+        ));
   }
 
   Widget HomePage() {
     return Scaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(top: 250.0),
-              child: Center(
-                child: Icon(
-                  Icons.slow_motion_video_sharp,
-                  color: Colors.black,
-                  size: 40.0,
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Movie",
-                    style: TextStyle(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top: 150.0),
+                  child: Center(
+                    child: Icon(
+                      Icons.slow_motion_video_sharp,
                       color: Colors.black,
-                      fontSize: 20.0,
+                      size: 40.0,
                     ),
                   ),
-                  Text(
-                    "Review",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 150.0),
-              alignment: Alignment.center,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: OutlineButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      color: Colors.redAccent,
-                      highlightedBorderColor: Colors.white,
-                      onPressed: () => gotoSignup(),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20.0,
-                          horizontal: 20.0,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                "SIGN UP",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Movie",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
                         ),
                       ),
-                    ),
+                      Text(
+                        "Review",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-              alignment: Alignment.center,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      color: Colors.white,
-                      onPressed: () => gotoLogin(),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20.0,
-                          horizontal: 20.0,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                "LOGIN",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.redAccent,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 160.0),
+                  alignment: Alignment.center,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)
+                            )
+                          ),
+                          onPressed: () => gotoSignup(),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 20.0,
+                              horizontal: 20.0,
                             ),
-                          ],
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                  child: Text(
+                                    "SIGN UP",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+                  alignment: Alignment.center,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)
+                            )
+                          ),
+                          onPressed: () => gotoLogin(), //로그인 눌렀을때 
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 20.0,
+                              horizontal: 20.0,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                  child: Text(
+                                    "LOGIN",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
         ),
-      ),
     );
   }
 
@@ -153,11 +171,11 @@ class _LoginScreenState extends State<LoginScreen>
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(100.0),
+              padding: EdgeInsets.only(top: 40.0, bottom: 50.0),
               child: Center(
                 child: Icon(
-                  Icons.headset_mic,
-                  color: Colors.redAccent,
+                  Icons.slow_motion_video_sharp,
+                  color: Colors.black,
                   size: 50.0,
                 ),
               ),
@@ -171,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen>
                       "EMAIL",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Colors.black,
                         fontSize: 15.0,
                       ),
                     ),
@@ -202,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen>
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'samarthagarwal@live.com',
+                        hintText: 'example@gmail.com',
                         hintStyle: TextStyle(color: Colors.grey),
                       ),
                     ),
@@ -222,7 +240,7 @@ class _LoginScreenState extends State<LoginScreen>
                       "PASSWORD",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Colors.black,
                         fontSize: 15.0,
                       ),
                     ),
@@ -274,7 +292,7 @@ class _LoginScreenState extends State<LoginScreen>
                       "Forgot Password?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Colors.black,
                         fontSize: 15.0,
                       ),
                       textAlign: TextAlign.end,
@@ -291,11 +309,13 @@ class _LoginScreenState extends State<LoginScreen>
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)
+                        ),
                       ),
-                      color: Colors.redAccent,
                       onPressed: () => {},
                       child: Container(
                         padding: const EdgeInsets.symmetric(
@@ -362,11 +382,13 @@ class _LoginScreenState extends State<LoginScreen>
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: FlatButton(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
+                                borderRadius: BorderRadius.circular(50)
+                               ),
                               ),
-                              color: Color(0Xff3B5998),
                               onPressed: () => {},
                               child: Container(
                                 child: Row(
@@ -386,14 +408,14 @@ class _LoginScreenState extends State<LoginScreen>
                                             Icon(
                                               const IconData(0xea90,
                                                   fontFamily: 'icomoon'),
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               size: 15.0,
                                             ),
                                             Text(
                                               "FACEBOOK",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ],
@@ -416,11 +438,13 @@ class _LoginScreenState extends State<LoginScreen>
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: FlatButton(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
+                                borderRadius: BorderRadius.circular(50)
+                               ),
                               ),
-                              color: Color(0Xffdb3236),
                               onPressed: () => {},
                               child: Container(
                                 child: Row(
@@ -440,14 +464,14 @@ class _LoginScreenState extends State<LoginScreen>
                                             Icon(
                                               const IconData(0xea88,
                                                   fontFamily: 'icomoon'),
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               size: 15.0,
                                             ),
                                             Text(
                                               "GOOGLE",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ],
@@ -489,11 +513,11 @@ class _LoginScreenState extends State<LoginScreen>
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(100.0),
+                padding: EdgeInsets.only(top: 40.0, bottom: 50.0),
                 child: Center(
                   child: Icon(
-                    Icons.headset_mic,
-                    color: Colors.redAccent,
+                    Icons.slow_motion_video_sharp,
+                    color: Colors.black,
                     size: 50.0,
                   ),
                 ),
@@ -507,7 +531,7 @@ class _LoginScreenState extends State<LoginScreen>
                         "EMAIL",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.redAccent,
+                          color: Colors.black,
                           fontSize: 15.0,
                         ),
                       ),
@@ -538,7 +562,7 @@ class _LoginScreenState extends State<LoginScreen>
                         textAlign: TextAlign.left,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'samarthagarwal@live.com',
+                          hintText: 'email@gmail.com',
                           hintStyle: TextStyle(color: Colors.grey),
                         ),
                       ),
@@ -560,7 +584,7 @@ class _LoginScreenState extends State<LoginScreen>
                         "PASSWORD",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.redAccent,
+                          color: Colors.black,
                           fontSize: 15.0,
                         ),
                       ),
@@ -611,7 +635,7 @@ class _LoginScreenState extends State<LoginScreen>
                         "CONFIRM PASSWORD",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.redAccent,
+                          color: Colors.black,
                           fontSize: 15.0,
                         ),
                       ),
@@ -663,7 +687,7 @@ class _LoginScreenState extends State<LoginScreen>
                         "Already have an account?",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.redAccent,
+                          color: Colors.black,
                           fontSize: 15.0,
                         ),
                         textAlign: TextAlign.end,
@@ -680,11 +704,13 @@ class _LoginScreenState extends State<LoginScreen>
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        color: Colors.redAccent,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.black,
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)
+                          )
+                         ),
                         onPressed: () => {},
                         child: Container(
                           padding: const EdgeInsets.symmetric(
@@ -734,19 +760,5 @@ class _LoginScreenState extends State<LoginScreen>
       duration: Duration(milliseconds: 800),
       curve: Curves.bounceOut,
     );
-  }
-
-  PageController _controller = PageController(initialPage: 1, viewportFraction: 1.0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: MediaQuery.of(context).size.height,
-        child: PageView(
-          controller: _controller,
-          physics: AlwaysScrollableScrollPhysics(),
-          children: <Widget>[LoginPage(), HomePage(), SignupPage()],
-          scrollDirection: Axis.horizontal,
-        ));
   }
 }

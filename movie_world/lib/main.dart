@@ -22,10 +22,13 @@ class _MovieAppState extends State<MovieApp> {
       future: Init.instance.initialize(),
       builder: (context, AsyncSnapshot snapshot) {
         // Show splash screen while waiting for app resources to load:
+        // title: snapshot.connectionState == ConnectionState.waiting ? '': 'side project',
+        // theme: snapshot.connectionState == ConnectionState.waiting ? ThemeData():ThemeData(primarySwatch: Colors.blue,),
+        // home: snapshot.connectionState == ConnectionState.waiting ? Splash() : LoginScreen()    
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: LoginScreen() //Splash() 
+            home: LoginScreen() 
             );
         } else {
           // Loading is done, return the app:
